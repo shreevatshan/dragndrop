@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing App</title>
+    <link rel="stylesheet" href="{{.BaseURL}}/static/css/style.css">
+    <script>
+        // Pass the base URL to JavaScript
+        window.baseURL = "{{.BaseURL}}";
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Drag 'n Drop</h1>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="upload">Upload Files</button>
+            <button class="tab-btn" data-tab="download">Download Files</button>
+        </div>
+        
+        <div class="tab-content">
+            <!-- Upload Section -->
+            <div id="upload" class="tab-pane active">
+                <div class="upload-container" id="drop-area">
+                    <div class="upload-instructions">
+                        <img src="{{.BaseURL}}/static/img/upload-icon.svg" alt="Upload" class="upload-icon">
+                        <p>Drag & drop files here</p>
+                        <p class="note">Note: For folders, please use the "Choose Folder" button below</p>
+                        <div class="button-group">
+                            <label for="fileInput" class="file-input-label">Choose Files</label>
+                            <input type="file" id="fileInput" multiple style="display:none;">
+                            
+                            <label for="folderInput" class="file-input-label">Choose Folder</label>
+                            <input type="file" id="folderInput" webkitdirectory directory multiple style="display:none;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="upload-progress" id="uploadProgress" style="display:none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="progressText">Uploading...</p>
+                    
+                    <div class="upload-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Pending:</span>
+                            <span id="pendingCount" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Success:</span>
+                            <span id="successCount" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Failed:</span>
+                            <span id="failedCount" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="upload-list">
+                    <div class="upload-list-header">
+                        <h3>Upload Queue</h3>
+                        <button id="toggleUploadList" class="toggle-btn">▼</button>
+                    </div>
+                    <ul id="uploadList"></ul>
+                </div>
+            </div>
+            
+            <!-- Download Section -->
+            <div id="download" class="tab-pane">
+                <div class="file-list-container">
+                    <h3>Available Files</h3>
+                    <div class="file-list" id="fileList">
+                        <p class="loading-text">Loading files...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
+    
+    <script src="{{.BaseURL}}/static/js/app.js"></script>
+</body>
+</html>
