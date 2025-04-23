@@ -101,6 +101,9 @@ This will start the server at http://example.com:8080/fileshare
 │   └── uploads/           # Directory for uploaded files
 └── README.md              # This file
 ```
+## Disclaimer
+
+Built with Cline AI Extension
 
 ## License
 
